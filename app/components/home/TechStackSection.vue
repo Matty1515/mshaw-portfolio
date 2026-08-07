@@ -187,7 +187,7 @@ const backEndSkills = [
   margin: clamp(26px, 2.3vw, 36px) 0 0;
   padding: 0;
   display: grid;
-  grid-auto-flow: column;
+  grid-auto-flow: row;
   column-gap: clamp(26px, 3vw, 48px);
   row-gap: clamp(20px, 1.9vw, 29px);
   list-style: none;
@@ -196,13 +196,11 @@ const backEndSkills = [
 
 .tech-stack-list--front-end {
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(4, auto);
 }
 
 .tech-stack-list--back-end {
-  width: 67%;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(4, auto);
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .tech-stack-list li {
@@ -262,7 +260,7 @@ const backEndSkills = [
   }
 
   .tech-stack-layout {
-    margin-top: clamp(48px, 10vw, 78px);
+    margin-top: clamp(28px, 6vw, 44px);
     display: flex;
     flex-direction: column;
   }
@@ -272,14 +270,12 @@ const backEndSkills = [
   }
 
   .tech-stack-image {
-    width: min(100%, 620px);
-    aspect-ratio: 1.9 / 1;
-    order: 1;
+    display: none;
   }
 
   .tech-stack-groups {
     order: 2;
-    margin-top: clamp(52px, 11vw, 84px);
+    margin-top: 0;
     gap: clamp(52px, 11vw, 84px);
   }
 
@@ -303,13 +299,8 @@ const backEndSkills = [
     row-gap: clamp(18px, 4vw, 28px);
   }
 
-  .tech-stack-list--front-end {
-    grid-template-rows: repeat(6, auto);
-  }
-
   .tech-stack-list--back-end {
     width: 100%;
-    grid-template-rows: repeat(4, auto);
   }
 
   .tech-stack-list li {
@@ -328,12 +319,6 @@ const backEndSkills = [
     transform: scaleX(0.85);
     transform-origin: left center;
     width: 117.65%;
-  }
-
-  .tech-stack-list {
-    grid-auto-flow: row;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: none;
   }
 
   .tech-stack-signoff {
