@@ -36,6 +36,7 @@ onBeforeUnmount(() => {
       <HomeHeroSection />
       <HomeAboutSection />
       <HomeExperienceSection />
+      <HomeTechStackSection />
     </article>
   </main>
 </template>
@@ -106,7 +107,10 @@ onBeforeUnmount(() => {
 :deep(.portfolio-statement),
 :deep(.about-copy),
 :deep(.experience-section),
-:deep(.experience-title) {
+:deep(.experience-title),
+:deep(.tech-stack-section),
+:deep(.tech-stack-title),
+:deep(.tech-stack-category) {
   transition: background-color 680ms cubic-bezier(0.22, 1, 0.36, 1),
     color 680ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 680ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -163,7 +167,10 @@ onBeforeUnmount(() => {
   :deep(.portfolio-statement),
   :deep(.about-copy),
   :deep(.experience-section),
-  :deep(.experience-title) {
+  :deep(.experience-title),
+  :deep(.tech-stack-section),
+  :deep(.tech-stack-title),
+  :deep(.tech-stack-category) {
     transition: none;
   }
 }
