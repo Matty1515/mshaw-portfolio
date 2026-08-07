@@ -124,7 +124,6 @@ onBeforeUnmount(() => {
 :deep(.tech-stack-category),
 :deep(.contact-section),
 :deep(.contact-title),
-:deep(.contact-closing),
 :deep(.contact-link) {
   transition: background-color 680ms cubic-bezier(0.22, 1, 0.36, 1),
     color 680ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -179,7 +178,6 @@ onBeforeUnmount(() => {
     :deep(.tech-stack-category),
     :deep(.contact-section),
     :deep(.contact-title),
-    :deep(.contact-closing),
     :deep(.contact-link) {
     transition: none;
   }

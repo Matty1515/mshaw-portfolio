@@ -1,8 +1,8 @@
 <template>
   <section id="contact" class="contact-section" aria-labelledby="contact-title">
     <h2 id="contact-title" class="contact-title">
-      <span>Let&rsquo;s</span>
-      <span>Talk</span>
+      <span>Get in</span>
+      <span>Touch</span>
     </h2>
 
     <div class="contact-copy">
@@ -55,11 +55,6 @@
         </li>
       </ul>
     </nav>
-
-    <p class="contact-closing" aria-label="Get in touch">
-      <span>Get In</span>
-      <span>Touch</span>
-    </p>
   </section>
 </template>
 
@@ -70,40 +65,37 @@
   padding: clamp(68px, 5.6vw, 78px) 0 clamp(24px, 2.6vw, 40px);
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(430px, 0.98fr);
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto minmax(0, 1fr);
   column-gap: clamp(64px, 7vw, 108px);
+  row-gap: clamp(48px, 6vw, 88px);
   scroll-margin-top: 0;
   color: var(--portfolio-text-colour);
   font-family: var(--portfolio-body-font);
 }
 
-.contact-title,
-.contact-closing {
+.contact-title {
+  grid-column: 1;
+  grid-row: 1;
   margin: 0;
   color: var(--portfolio-heading-colour);
   font-family: var(--portfolio-heading-font);
   font-weight: 400;
+  font-size: clamp(96px, 10.7vw, 150px);
   letter-spacing: -0.075em;
   line-height: 0.84;
   text-transform: uppercase;
 }
 
-.contact-title {
-  grid-column: 1;
-  grid-row: 1;
-  font-size: clamp(96px, 10.7vw, 150px);
-}
-
-.contact-title span,
-.contact-closing span {
+.contact-title span {
   display: block;
 }
 
 .contact-copy {
   grid-column: 1;
   grid-row: 2;
+  align-self: end;
   max-width: 520px;
-  margin-top: clamp(30px, 3.1vw, 48px);
+  margin: 0;
   font-size: clamp(17px, 1.6vw, 23px);
   font-weight: 500;
   letter-spacing: -0.025em;
@@ -120,9 +112,11 @@
 
 .contact-image {
   width: 100%;
+  max-height: 100px;
   aspect-ratio: 1.86 / 1;
   grid-column: 2;
-  grid-row: 1 / 3;
+  grid-row: 1;
+  align-self: start;
   margin-top: clamp(12px, 1.4vw, 22px);
   display: block;
   object-fit: cover;
@@ -131,10 +125,10 @@
 }
 
 .contact-links {
-  grid-column: 1;
-  grid-row: 3;
+  grid-column: 2;
+  grid-row: 2;
   align-self: end;
-  margin-top: clamp(36px, 3.5vw, 54px);
+  margin: 0;
 }
 
 .contact-links ul {
@@ -177,15 +171,6 @@
   outline-offset: 4px;
 }
 
-.contact-closing {
-  grid-column: 2;
-  grid-row: 2 / 4;
-  align-self: end;
-  justify-self: end;
-  font-size: clamp(90px, 10.5vw, 145px);
-  text-align: right;
-}
-
 @media (max-width: 1050px) and (min-width: 861px) {
   .contact-section {
     grid-template-columns: minmax(0, 0.9fr) minmax(350px, 1.1fr);
@@ -224,8 +209,7 @@
   }
 
   .contact-image {
-    width: min(100%, 650px);
-    margin-top: clamp(46px, 10vw, 78px);
+    display: none;
   }
 
   .contact-links {
@@ -239,17 +223,10 @@
     column-gap: clamp(14px, 4vw, 30px);
     font-size: clamp(18px, 4vw, 25px);
   }
-
-  .contact-closing {
-    margin-top: clamp(76px, 16vw, 124px);
-    font-size: clamp(62px, 16vw, 112px);
-    line-height: 0.86;
-  }
 }
 
 @media (max-width: 480px) {
-  .contact-title,
-  .contact-closing {
+  .contact-title {
     letter-spacing: -0.07em;
   }
 }
