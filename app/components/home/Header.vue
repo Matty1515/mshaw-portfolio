@@ -40,7 +40,7 @@ onBeforeUnmount(() => {
 
 <template>
   <header ref="portfolioHeader" class="portfolio-header" :style="{ top: stickyTop }">
-    <a class="portfolio-brand" href="#contact" @click="closeMenu">Matthew Shaw</a>
+    <a class="portfolio-brand" href="#top" @click="closeMenu">Matthew Shaw</a>
 
     <p class="portfolio-role">
       Front-End Developer<br>

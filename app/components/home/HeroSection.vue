@@ -23,7 +23,7 @@
       creative development
     </p>
 
-    <h2 id="contact" class="portfolio-name">
+    <h2 class="portfolio-name">
       <span>Matthew</span>
       <span>Shaw</span>
     </h2>

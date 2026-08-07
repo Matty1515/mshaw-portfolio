@@ -1,33 +1,43 @@
 <script setup>
-import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
 
-const darkThemeActive = ref(false);
-let workObserver;
+const workThemeActive = ref(false);
+const contactThemeActive = ref(false);
+const darkThemeActive = computed(() => workThemeActive.value && !contactThemeActive.value);
+const themeObservers = [];
 
-onMounted(async () => {
-  await nextTick();
-
-  const workSection = document.getElementById('work');
-
-  if (!workSection || !('IntersectionObserver' in window)) return;
-
-  workObserver = new IntersectionObserver(([entry]) => {
-    darkThemeActive.value = entry.isIntersecting || entry.boundingClientRect.top < 0;
+const observeThemeBoundary = (section, state) => {
+  const observer = new IntersectionObserver(([entry]) => {
+    state.value = entry.isIntersecting || entry.boundingClientRect.top < 0;
   }, {
     rootMargin: '0px 0px -25% 0px',
     threshold: 0,
   });
 
-  workObserver.observe(workSection);
+  observer.observe(section);
+  themeObservers.push(observer);
+};
+
+onMounted(async () => {
+  await nextTick();
+
+  const workSection = document.getElementById('work');
+  const contactSection = document.getElementById('contact');
+
+  if (!('IntersectionObserver' in window)) return;
+
+  if (workSection) observeThemeBoundary(workSection, workThemeActive);
+  if (contactSection) observeThemeBoundary(contactSection, contactThemeActive);
 });
 
 onBeforeUnmount(() => {
-  workObserver?.disconnect();
+  themeObservers.forEach(observer => observer.disconnect());
 });
 </script>
 
 <template>
   <main
+    id="top"
     class="portfolio-page"
     :class="{ 'portfolio-page--dark': darkThemeActive }"
   >
@@ -37,6 +47,7 @@ onBeforeUnmount(() => {
       <HomeAboutSection />
       <HomeExperienceSection />
       <HomeTechStackSection />
+      <HomeContactSection />
     </article>
   </main>
 </template>
@@ -110,17 +121,17 @@ onBeforeUnmount(() => {
 :deep(.experience-title),
 :deep(.tech-stack-section),
 :deep(.tech-stack-title),
-:deep(.tech-stack-category) {
+:deep(.tech-stack-category),
+:deep(.contact-section),
+:deep(.contact-title),
+:deep(.contact-closing),
+:deep(.contact-link) {
   transition: background-color 680ms cubic-bezier(0.22, 1, 0.36, 1),
     color 680ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 680ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (max-width: 1050px) and (min-width: 861px) {
-  .portfolio-page {
-    /* padding-inline: 5vw; */
-  }
-
   .portfolio-card {
     padding-inline: 45px;
   }
@@ -142,11 +153,6 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 480px) {
-  .portfolio-page {
-    /* padding-block: 24px; */
-    /* padding-inline: 9vw; */
-  }
-
   .portfolio-card {
     padding: 22px 17px 4px;
   }
@@ -168,9 +174,13 @@ onBeforeUnmount(() => {
   :deep(.about-copy),
   :deep(.experience-section),
   :deep(.experience-title),
-  :deep(.tech-stack-section),
-  :deep(.tech-stack-title),
-  :deep(.tech-stack-category) {
+    :deep(.tech-stack-section),
+    :deep(.tech-stack-title),
+    :deep(.tech-stack-category),
+    :deep(.contact-section),
+    :deep(.contact-title),
+    :deep(.contact-closing),
+    :deep(.contact-link) {
     transition: none;
   }
 }
