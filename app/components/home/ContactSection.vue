@@ -60,14 +60,13 @@
 
 <style scoped>
 .contact-section {
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 0;
   padding: clamp(68px, 5.6vw, 78px) 0 clamp(24px, 2.6vw, 40px);
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(430px, 0.98fr);
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
   column-gap: clamp(64px, 7vw, 108px);
-  row-gap: clamp(48px, 6vw, 88px);
+  row-gap: clamp(28px, 3vw, 44px);
   scroll-margin-top: 0;
   color: var(--portfolio-text-colour);
   font-family: var(--portfolio-body-font);
@@ -112,7 +111,7 @@
 
 .contact-image {
   width: 100%;
-  max-height: 100px;
+  max-height: 200px;
   aspect-ratio: 1.86 / 1;
   grid-column: 2;
   grid-row: 1;

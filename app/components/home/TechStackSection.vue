@@ -2,10 +2,9 @@
 const frontEndSkills = [
   'HTML5',
   'CSS3',
+  'JavaScript',
   'Sass',
   'Tailwind CSS',
-  'JavaScript',
-  'TypeScript',
   'Vue 3',
   'Nuxt',
   'Vite',
@@ -21,8 +20,6 @@ const backEndSkills = [
   'MySQL',
   'Node.js',
   'Git',
-  'Docker',
-  'CI/CD',
 ];
 </script>
 

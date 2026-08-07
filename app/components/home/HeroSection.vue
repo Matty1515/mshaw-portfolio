@@ -19,7 +19,7 @@
 
     <p class="portfolio-statement">
       I support designers<br>
-      and agencies with<br>
+      and clients with<br>
       creative development
     </p>
 

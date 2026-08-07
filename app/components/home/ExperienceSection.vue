@@ -6,13 +6,18 @@
       <li class="experience-item">
         <span class="experience-marker" aria-hidden="true"></span>
 
-        <p class="experience-date">2021 — Present</p>
+        <p class="experience-date">2024 — Present</p>
 
         <article class="experience-details">
-          <h3 class="experience-role">Senior Software Developer</h3>
-          <p class="experience-company">Vantage Cloud</p>
+          <h3 class="experience-role">Front-End Developer</h3>
+          <p class="experience-company">Layered Technologies</p>
           <p class="experience-description">
-            At Vantage Cloud, I continuously work with customers to ensure the platform fulfills their individual needs. This could be a new module or adapting existing features to match the customer existing business processes. I will also work with many different 3rd party API's to ensure various data sets are synced with the Vantage Cloud platform.
+            Delivered custom websites and interfaces for over 20 clients using HTML, CSS, JavaScript and 
+            Vue.js, tailoring each build to commercial and user needs. Built internal products including a 
+            configurable sign-up form builder and self-service portals for broadband customers and resellers. 
+            Helped modernise a legacy Laravel Blade front end into Vue.js, improving performance, reliability 
+            and maintainability. Worked directly with clients from requirements through release, while also 
+            maintaining existing systems and providing PHP and Laravel back-end support where needed.
           </p>
         </article>
       </li>
@@ -20,13 +25,15 @@
       <li class="experience-item">
         <span class="experience-marker" aria-hidden="true"></span>
 
-        <p class="experience-date">2018 — 2021</p>
+        <p class="experience-date">2021 — 2024</p>
 
         <article class="experience-details">
-          <h3 class="experience-role">Backend Developer</h3>
-          <p class="experience-company">Somerset Design</p>
+          <h3 class="experience-role">Junior Front-End Developer</h3>
+          <p class="experience-company">Layered Technologies (Continued)</p>
           <p class="experience-description">
-            In my role at Somerset Design I was the lead on various projects including a sponsorship auction platform and a considerable system that handles inventory among many other tasks. I was responsible for teaching and assisting colleagues in learning the Laravel framework. Another duty I had was maintaining and updating legacy sites.
+            Gained practical front-end development experience by contributing to live commercial projects and 
+            translating designs and requirements into reliable, maintainable code. Progressed into a more senior 
+            Front-End Developer role as my technical skills, responsibilities and project involvement grew.
           </p>
         </article>
       </li>
@@ -34,13 +41,33 @@
       <li class="experience-item">
         <span class="experience-marker" aria-hidden="true"></span>
 
-        <p class="experience-date">2017 — 2018</p>
+        <p class="experience-date">2020 — 2021</p>
 
         <article class="experience-details">
-          <h3 class="experience-role">PHP Developer</h3>
-          <p class="experience-company">BNS Property Management</p>
+          <h3 class="experience-role">Trainee Developer</h3>
+          <p class="experience-company">IT Career Switch</p>
           <p class="experience-description">
-            During my time at BNS my primary role was working on the MyBNS platform here landlords and tenants can log to help eliminate the difficulties in renting. MyBNS also allows the company to undertake many more clients making them a leader in the property management industry.
+            Completed an intensive development traineeship covering a broad range of front-end and back-end 
+            technologies, including HTML, CSS, JavaScript, PHP, SQL, React, Python and Git. Built two professional 
+            portfolio projects during the programme: a full CRUD application and an interactive map-based 
+            application.
+          </p>
+        </article>
+      </li>
+
+      <li class="experience-item">
+        <span class="experience-marker" aria-hidden="true"></span>
+
+        <p class="experience-date">2018 — 2020</p>
+
+        <article class="experience-details">
+          <h3 class="experience-role">eCommerce Assistant</h3>
+          <p class="experience-company">Young Lives vs Cancer</p>
+          <p class="experience-description">
+            Supported the day-to-day operation of an eCommerce business by managing product content, promotions 
+            and catalogue updates to maintain a clear and consistent customer experience. Conducted detailed 
+            online market research to identify and price valuable antiques, while sharing specialist knowledge 
+            and collaborating with other volunteers.
           </p>
         </article>
       </li>
@@ -120,6 +147,12 @@
   font-size: clamp(20px, 1.85vw, 29px);
   font-weight: 500;
   line-height: 1.08;
+}
+
+.experience-company {
+  opacity: 0.5;
+  font-weight: 200;
+  font-size: clamp(18px, 1.85vw, 25px);
 }
 
 .experience-date {

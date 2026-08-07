@@ -63,7 +63,7 @@ const resetPointer = (event) => {
     </div>
 
     <p class="about-copy">
-      I’m a creative web developer focused on building clean, accessible, high-performance digital experiences. I enjoy turning thoughtful design into smooth, modern products with strong front-end craft and dependable back-end foundations.
+      I’m a creative Font-End Developer focused on building clean, accessible, high-performance digital experiences. I enjoy turning thoughtful design into smooth, modern products with strong front-end craft and dependable back-end foundations.
     </p>
   </section>
 </template>
