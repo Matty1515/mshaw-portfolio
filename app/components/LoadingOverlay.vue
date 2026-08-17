@@ -173,7 +173,7 @@ onBeforeUnmount(() => {
 }
 
 .loading-indicator {
-  width: clamp(118px, 11vw, 156px);
+  width: clamp(104px, 9.5vw, 136px);
   aspect-ratio: 1;
   position: relative;
   display: grid;
@@ -200,22 +200,22 @@ onBeforeUnmount(() => {
 .loading-ring__track,
 .loading-ring__progress {
   fill: none;
-  stroke-width: 1.25;
+  stroke-width: 0.85;
 }
 
 .loading-ring__track {
-  stroke: rgba(5, 5, 5, 0.16);
+  stroke: rgba(5, 5, 5, 0.08);
 }
 
 .loading-ring__progress {
-  stroke: currentColor;
+  stroke: rgba(5, 5, 5, 0.18);
   stroke-linecap: round;
   transition: stroke-dashoffset 90ms linear;
 }
 
 .loading-percentage {
   font-family: var(--portfolio-heading-font, Arial, Helvetica, sans-serif);
-  font-size: clamp(20px, 1.65vw, 26px);
+  font-size: clamp(14px, 1.2vw, 18px);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 1;
@@ -224,7 +224,7 @@ onBeforeUnmount(() => {
 
 @media (max-width: 480px) {
   .loading-indicator {
-    width: 112px;
+    width: 100px;
   }
 }
 
