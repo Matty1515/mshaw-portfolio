@@ -1,3 +1,4 @@
 <template>
+  <LoadingOverlay />
   <NuxtPage />
 </template>
