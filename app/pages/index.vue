@@ -60,6 +60,9 @@ onBeforeUnmount(() => {
   --portfolio-text-colour: #050505;
   --portfolio-heading-font: Arial, Helvetica, sans-serif;
   --portfolio-body-font: 'DM Sans', Arial, sans-serif;
+  --portfolio-scrollbar-track: #e9e7e6;
+  --portfolio-scrollbar-thumb: #6a6b6d;
+  --portfolio-scrollbar-thumb-hover: #3f4143;
 }
 
 :global(*) {
@@ -68,6 +71,33 @@ onBeforeUnmount(() => {
 
 :global(html) {
   scroll-behavior: smooth;
+  scrollbar-color: var(--portfolio-scrollbar-thumb) var(--portfolio-scrollbar-track);
+  scrollbar-width: thin;
+}
+
+:global(html:has(.portfolio-page--dark)) {
+  --portfolio-scrollbar-track: #050505;
+  --portfolio-scrollbar-thumb: #c4c4bf;
+  --portfolio-scrollbar-thumb-hover: #f5f5f2;
+}
+
+:global(::-webkit-scrollbar) {
+  width: 10px;
+}
+
+:global(::-webkit-scrollbar-track) {
+  background: var(--portfolio-scrollbar-track);
+}
+
+:global(::-webkit-scrollbar-thumb) {
+  min-height: 48px;
+  background: var(--portfolio-scrollbar-thumb);
+  border: 3px solid var(--portfolio-scrollbar-track);
+  border-radius: 999px;
+}
+
+:global(::-webkit-scrollbar-thumb:hover) {
+  background: var(--portfolio-scrollbar-thumb-hover);
 }
 
 :global(body) {
