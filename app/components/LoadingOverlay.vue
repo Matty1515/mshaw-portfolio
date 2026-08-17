@@ -215,7 +215,7 @@ onBeforeUnmount(() => {
 
 .loading-percentage {
   font-family: var(--portfolio-heading-font, Arial, Helvetica, sans-serif);
-  font-size: clamp(14px, 1.2vw, 18px);
+  font-size: clamp(15px, 1.3vw, 20px);
   font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 1;

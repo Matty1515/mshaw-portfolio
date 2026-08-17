@@ -1,6 +1,6 @@
 # Matthew Shaw Portfolio
 
-This repository contains the source code for Matthew Shaw's portfolio website. It is built with [Nuxt](https://nuxt.com/) and hosted on Netlify.
+This repository contains the source code for my portfolio website. It is built with [Nuxt](https://nuxt.com/) and hosted on Netlify.
 
 ## Setup
 
