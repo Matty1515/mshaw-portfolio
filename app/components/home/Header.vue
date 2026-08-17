@@ -1,45 +1,15 @@
 <script setup>
-import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
+import { ref } from 'vue';
 
 const menuOpen = ref(false);
-const portfolioHeader = ref(null);
-const stickyTop = ref('0px');
-let cardResizeObserver;
 
 const closeMenu = () => {
   menuOpen.value = false;
 };
-
-const updateStickyTop = () => {
-  const header = portfolioHeader.value;
-  const card = header?.parentElement;
-
-  if (!card) return;
-
-  const cardTop = card.getBoundingClientRect().top + window.scrollY;
-  const cardPaddingTop = Number.parseFloat(window.getComputedStyle(card).paddingTop) || 0;
-  stickyTop.value = `${cardTop + cardPaddingTop}px`;
-};
-
-onMounted(async () => {
-  await nextTick();
-  updateStickyTop();
-  window.addEventListener('resize', updateStickyTop);
-
-  if ('ResizeObserver' in window) {
-    cardResizeObserver = new ResizeObserver(updateStickyTop);
-    cardResizeObserver.observe(portfolioHeader.value.parentElement);
-  }
-});
-
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateStickyTop);
-  cardResizeObserver?.disconnect();
-});
 </script>
 
 <template>
-  <header ref="portfolioHeader" class="portfolio-header" :style="{ top: stickyTop }">
+  <header class="portfolio-header">
     <a class="portfolio-brand" href="#top" @click="closeMenu">Matthew Shaw</a>
 
     <p class="portfolio-role">
@@ -88,7 +58,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .portfolio-header {
-  position: sticky;
+  position: relative;
   z-index: 10;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
