@@ -1,45 +1,74 @@
 <script setup>
-import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 const menuOpen = ref(false);
-const portfolioHeader = ref(null);
-const stickyTop = ref('0px');
-let cardResizeObserver;
+const menuButton = ref(null);
+const mobileNavigation = ref(null);
+let mobileMediaQuery;
+let previousBodyOverflow = '';
+let previousDocumentOverflow = '';
 
 const closeMenu = () => {
   menuOpen.value = false;
 };
 
-const updateStickyTop = () => {
-  const header = portfolioHeader.value;
-  const card = header?.parentElement;
-
-  if (!card) return;
-
-  const cardTop = card.getBoundingClientRect().top + window.scrollY;
-  const cardPaddingTop = Number.parseFloat(window.getComputedStyle(card).paddingTop) || 0;
-  stickyTop.value = `${cardTop + cardPaddingTop}px`;
+const closeMenuAndRestoreFocus = async () => {
+  closeMenu();
+  await nextTick();
+  menuButton.value?.focus();
 };
 
-onMounted(async () => {
-  await nextTick();
-  updateStickyTop();
-  window.addEventListener('resize', updateStickyTop);
+const toggleMenu = () => {
+  menuOpen.value = !menuOpen.value;
+};
 
-  if ('ResizeObserver' in window) {
-    cardResizeObserver = new ResizeObserver(updateStickyTop);
-    cardResizeObserver.observe(portfolioHeader.value.parentElement);
+const restorePageScroll = () => {
+  document.body.style.overflow = previousBodyOverflow;
+  document.documentElement.style.overflow = previousDocumentOverflow;
+};
+
+const handleKeydown = (event) => {
+  if (event.key !== 'Escape' || !menuOpen.value) return;
+
+  event.preventDefault();
+  closeMenuAndRestoreFocus();
+};
+
+const handleMobileBreakpointChange = (event) => {
+  if (!event.matches) closeMenu();
+};
+
+watch(menuOpen, async (isOpen) => {
+  if (isOpen) {
+    previousBodyOverflow = document.body.style.overflow;
+    previousDocumentOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    await nextTick();
+    if (menuOpen.value) mobileNavigation.value?.querySelector('a')?.focus();
+    return;
   }
+
+  restorePageScroll();
+});
+
+onMounted(() => {
+  mobileMediaQuery = window.matchMedia('(max-width: 860px)');
+  mobileMediaQuery.addEventListener('change', handleMobileBreakpointChange);
+  window.addEventListener('keydown', handleKeydown);
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateStickyTop);
-  cardResizeObserver?.disconnect();
+  mobileMediaQuery?.removeEventListener('change', handleMobileBreakpointChange);
+  window.removeEventListener('keydown', handleKeydown);
+
+  if (menuOpen.value) restorePageScroll();
 });
 </script>
 
 <template>
-  <header ref="portfolioHeader" class="portfolio-header" :style="{ top: stickyTop }">
+  <header class="portfolio-header">
     <a class="portfolio-brand" href="#top" @click="closeMenu">Matthew Shaw</a>
 
     <p class="portfolio-role">
@@ -59,13 +88,15 @@ onBeforeUnmount(() => {
     </nav>
 
     <button
+      ref="menuButton"
       class="menu-button"
       type="button"
       aria-controls="mobile-navigation"
       :aria-expanded="menuOpen"
-      @click="menuOpen = !menuOpen"
+      :aria-label="menuOpen ? 'Close menu' : 'Open menu'"
+      @click="toggleMenu"
     >
-      <span>MENU</span>
+      <span class="menu-label">MENU</span>
       <span class="menu-icon" aria-hidden="true">
         <span></span>
         <span></span>
@@ -74,6 +105,7 @@ onBeforeUnmount(() => {
     </button>
 
     <nav
+      ref="mobileNavigation"
       v-show="menuOpen"
       id="mobile-navigation"
       class="mobile-navigation"
@@ -88,7 +120,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .portfolio-header {
-  position: sticky;
+  position: relative;
   z-index: 10;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -169,6 +201,8 @@ onBeforeUnmount(() => {
   .portfolio-brand {
     grid-column: 1;
     grid-row: 1;
+    position: relative;
+    z-index: 2;
   }
 
   .portfolio-role,
@@ -194,6 +228,8 @@ onBeforeUnmount(() => {
     cursor: pointer;
     font-size: clamp(13px, 2.5vw, 24px);
     font-weight: 600;
+    position: relative;
+    z-index: 2;
   }
 
   .menu-icon {
@@ -222,18 +258,25 @@ onBeforeUnmount(() => {
     transform: translateY(clamp(-10px, -1vw, -6px)) rotate(-45deg);
   }
 
+  .menu-button[aria-expanded='true'] .menu-label {
+    display: none;
+  }
+
   .mobile-navigation {
-    position: absolute;
-    z-index: 2;
-    top: clamp(36px, 6vw, 58px);
-    right: 0;
-    min-width: 130px;
-    padding: 14px 18px;
+    position: fixed;
+    z-index: 1;
+    inset: 0;
+    width: 100vw;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(72px, 16vw, 120px) clamp(24px, 8vw, 48px);
     display: grid;
-    gap: 8px;
-    border: 2px solid currentColor;
+    place-content: center;
+    gap: clamp(18px, 5vw, 32px);
     background: var(--portfolio-content-background);
-    text-align: right;
+    font-size: clamp(42px, 13vw, 72px);
+    line-height: 0.95;
+    text-align: center;
   }
 }
 
