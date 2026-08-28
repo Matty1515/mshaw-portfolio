@@ -265,7 +265,7 @@ defineProps({
   }
 
   .portfolio-statement {
-    order: 1;
+    order: 2;
     align-self: flex-start;
     margin-top: clamp(30px, 6vw, 57px);
     font-size: clamp(13px, 2.55vw, 24px);
@@ -273,7 +273,7 @@ defineProps({
   }
 
   .down-link {
-    order: 2;
+    order: 3;
     width: clamp(40px, 7.7vw, 73px);
     height: clamp(52px, 9.5vw, 92px);
     margin-top: clamp(20px, 4.5vw, 43px);
@@ -293,7 +293,7 @@ defineProps({
   }
 
   .portfolio-name {
-    order: 3;
+    order: 1;
     align-self: stretch;
     margin-top: clamp(20px, 5vw, 47px);
     font-size: clamp(44px, 13.3vw, 125px);
