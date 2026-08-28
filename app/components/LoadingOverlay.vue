@@ -1,6 +1,8 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
+const emit = defineEmits(['complete']);
+
 const MINIMUM_DURATION = 2000;
 const REDUCED_MOTION_HOLD = 150;
 const EXIT_DURATION = 620;
@@ -87,6 +89,7 @@ const dismiss = async (reducedMotion) => {
   if (!active) return;
 
   leaving.value = true;
+  emit('complete');
   await delay(reducedMotion ? 0 : EXIT_DURATION);
 
   if (!active) return;

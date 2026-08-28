@@ -1,6 +1,13 @@
 <script setup>
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
+defineProps({
+  revealed: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const menuOpen = ref(false);
 const menuButton = ref(null);
 const mobileNavigation = ref(null);
@@ -68,7 +75,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <header class="portfolio-header">
+  <header
+    class="portfolio-header"
+    :class="{ 'portfolio-header--revealed': revealed }"
+  >
     <a class="portfolio-brand" href="#top" @click="closeMenu">Matthew Shaw</a>
 
     <p class="portfolio-role">
@@ -183,6 +193,36 @@ onBeforeUnmount(() => {
   display: none;
 }
 
+.portfolio-brand,
+.portfolio-role,
+.portfolio-location,
+.desktop-navigation,
+.menu-button {
+  opacity: 0;
+  transition: opacity 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portfolio-header--revealed .portfolio-brand,
+.portfolio-header--revealed .portfolio-role,
+.portfolio-header--revealed .portfolio-location,
+.portfolio-header--revealed .desktop-navigation,
+.portfolio-header--revealed .menu-button {
+  opacity: 1;
+}
+
+.portfolio-role,
+.menu-button {
+  transition-delay: 70ms;
+}
+
+.portfolio-location {
+  transition-delay: 140ms;
+}
+
+.desktop-navigation {
+  transition-delay: 210ms;
+}
+
 @media (max-width: 1050px) and (min-width: 861px) {
   .portfolio-header {
     column-gap: 28px;
@@ -281,6 +321,15 @@ onBeforeUnmount(() => {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .portfolio-brand,
+  .portfolio-role,
+  .portfolio-location,
+  .desktop-navigation,
+  .menu-button {
+    opacity: 1;
+    transition: none;
+  }
+
   .menu-icon span {
     transition: none;
   }

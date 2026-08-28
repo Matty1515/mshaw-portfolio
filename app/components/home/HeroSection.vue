@@ -1,8 +1,21 @@
+<script setup>
+defineProps({
+  revealed: {
+    type: Boolean,
+    default: false,
+  },
+});
+</script>
+
 <template>
-  <section class="portfolio-work" aria-labelledby="portfolio-title">
+  <section
+    class="portfolio-work"
+    :class="{ 'portfolio-work--revealed': revealed }"
+    aria-labelledby="portfolio-title"
+  >
     <h1 id="portfolio-title" class="portfolio-title">
-      <span>Creative</span>
-      <span>Developer</span>
+      <span class="reveal-line"><span class="reveal-line__inner">Creative</span></span>
+      <span class="reveal-line"><span class="reveal-line__inner">Developer</span></span>
     </h1>
 
     <img
@@ -12,7 +25,11 @@
     >
   </section>
 
-  <section class="portfolio-footer" aria-label="About Matthew Shaw">
+  <section
+    class="portfolio-footer"
+    :class="{ 'portfolio-footer--revealed': revealed }"
+    aria-label="About Matthew Shaw"
+  >
     <a class="down-link" href="#about" aria-label="Continue to about Matthew Shaw">
       <span aria-hidden="true"></span>
     </a>
@@ -24,8 +41,8 @@
     </p>
 
     <h2 class="portfolio-name">
-      <span>Matthew</span>
-      <span>Shaw</span>
+      <span class="reveal-line"><span class="reveal-line__inner">Matthew</span></span>
+      <span class="reveal-line"><span class="reveal-line__inner">Shaw</span></span>
     </h2>
   </section>
 </template>
@@ -53,9 +70,42 @@
   font-size: clamp(90px, 8.15vw, 132px);
 }
 
-.portfolio-title span,
-.portfolio-name span {
+.reveal-line,
+.reveal-line__inner {
   display: block;
+}
+
+.reveal-line {
+  overflow: hidden;
+  margin-inline: -0.08em;
+  padding-inline: 0.08em;
+}
+
+.reveal-line__inner {
+  transform: translateY(112%);
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.portfolio-work--revealed .reveal-line__inner,
+.portfolio-footer--revealed .reveal-line__inner {
+  transform: translateY(0);
+}
+
+.portfolio-title .reveal-line:first-child .reveal-line__inner {
+  transition-delay: 0ms;
+}
+
+.portfolio-title .reveal-line:nth-child(2) .reveal-line__inner {
+  transition-delay: 100ms;
+}
+
+.portfolio-name .reveal-line:first-child .reveal-line__inner {
+  transition-delay: 340ms;
+}
+
+.portfolio-name .reveal-line:nth-child(2) .reveal-line__inner {
+  transition-delay: 440ms;
 }
 
 .portfolio-portrait {
@@ -65,6 +115,36 @@
   margin-top: 39px;
   display: block;
   object-fit: cover;
+}
+
+.portfolio-portrait,
+.portfolio-statement,
+.down-link {
+  opacity: 0;
+}
+
+.portfolio-work--revealed .portfolio-portrait,
+.portfolio-footer--revealed .portfolio-statement,
+.portfolio-footer--revealed .down-link {
+  animation: hero-fade-in 550ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.portfolio-work--revealed .portfolio-portrait {
+  animation-delay: 260ms;
+}
+
+.portfolio-footer--revealed .portfolio-statement {
+  animation-delay: 340ms;
+}
+
+.portfolio-footer--revealed .down-link {
+  animation-delay: 410ms;
+}
+
+@keyframes hero-fade-in {
+  to {
+    opacity: 1;
+  }
 }
 
 .portfolio-footer {
@@ -228,6 +308,20 @@
     transform: scaleX(0.85);
     transform-origin: left center;
     width: 117.65%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-line__inner {
+    transform: none;
+    transition: none;
+  }
+
+  .portfolio-portrait,
+  .portfolio-statement,
+  .down-link {
+    opacity: 1;
+    animation: none;
   }
 }
 </style>

@@ -1,6 +1,13 @@
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
 
+defineProps({
+  heroRevealed: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const workThemeActive = ref(false);
 const contactThemeActive = ref(false);
 const darkThemeActive = computed(() => workThemeActive.value && !contactThemeActive.value);
@@ -42,8 +49,8 @@ onBeforeUnmount(() => {
     :class="{ 'portfolio-page--dark': darkThemeActive }"
   >
     <article class="portfolio-card">
-      <HomeHeader />
-      <HomeHeroSection />
+      <HomeHeader :revealed="heroRevealed" />
+      <HomeHeroSection :revealed="heroRevealed" />
       <HomeAboutSection />
       <HomeExperienceSection />
       <HomeTechStackSection />

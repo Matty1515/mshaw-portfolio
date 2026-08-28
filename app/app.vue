@@ -1,4 +1,10 @@
+<script setup>
+import { ref } from 'vue';
+
+const heroRevealed = ref(false);
+</script>
+
 <template>
-  <LoadingOverlay />
-  <NuxtPage />
+  <LoadingOverlay @complete="heroRevealed = true" />
+  <NuxtPage :hero-revealed="heroRevealed" />
 </template>
