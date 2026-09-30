@@ -17,7 +17,11 @@
 
     <img
       class="contact-image"
-      src="/img/portfolio-graphic.jpg"
+      src="/img/contact-ocean.jpg"
+      width="1200"
+      height="1800"
+      loading="lazy"
+      decoding="async"
       alt=""
     >
 
@@ -111,6 +115,7 @@
 
 .contact-image {
   width: 100%;
+  height: auto;
   max-height: 200px;
   aspect-ratio: 1.86 / 1;
   grid-column: 2;
@@ -120,7 +125,7 @@
   display: block;
   object-fit: cover;
   object-position: 50% 54%;
-  filter: grayscale(1) contrast(1.12) brightness(0.72);
+  filter: grayscale(1) contrast(0.85) brightness(1.08);
 }
 
 .contact-links {

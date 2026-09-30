@@ -28,7 +28,11 @@ const resetPointer = (event) => {
 
     <div class="floating-image floating-image-one" aria-hidden="true">
       <img
-        src="/img/portfolio-graphic.jpg"
+        src="/img/about-monument.jpg"
+        width="360"
+        height="240"
+        loading="lazy"
+        decoding="async"
         alt=""
         @pointermove="followPointer"
         @pointerleave="resetPointer"
@@ -37,7 +41,11 @@ const resetPointer = (event) => {
 
     <div class="floating-image floating-image-two" aria-hidden="true">
       <img
-        src="/img/portfolio-graphic.jpg"
+        src="/img/about-concrete.jpg"
+        width="360"
+        height="540"
+        loading="lazy"
+        decoding="async"
         alt=""
         @pointermove="followPointer"
         @pointerleave="resetPointer"
@@ -46,7 +54,11 @@ const resetPointer = (event) => {
 
     <div class="floating-image floating-image-three" aria-hidden="true">
       <img
-        src="/img/portfolio-graphic.jpg"
+        src="/img/about-facade.jpg"
+        width="360"
+        height="239"
+        loading="lazy"
+        decoding="async"
         alt=""
         @pointermove="followPointer"
         @pointerleave="resetPointer"
@@ -55,7 +67,11 @@ const resetPointer = (event) => {
 
     <div class="floating-image floating-image-four" aria-hidden="true">
       <img
-        src="/img/portfolio-graphic.jpg"
+        src="/img/about-stair-shadows.jpg"
+        width="360"
+        height="240"
+        loading="lazy"
+        decoding="async"
         alt=""
         @pointermove="followPointer"
         @pointerleave="resetPointer"
@@ -113,6 +129,7 @@ const resetPointer = (event) => {
   height: 100%;
   display: block;
   object-fit: cover;
+  filter: grayscale(1) contrast(0.85) brightness(1.08);
   transform: translate3d(var(--pointer-x), var(--pointer-y), 0);
   transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
