@@ -31,7 +31,11 @@ const backEndSkills = [
       <div class="tech-stack-visual">
         <img
           class="tech-stack-image"
-          src="/img/portfolio-graphic.jpg"
+          src="/img/tech-stack-staircase.jpg"
+          width="1200"
+          height="2133"
+          loading="lazy"
+          decoding="async"
           alt=""
         >
 
@@ -103,11 +107,12 @@ const backEndSkills = [
 
 .tech-stack-image {
   width: 100%;
+  height: auto;
   aspect-ratio: 1.77 / 1;
   display: block;
   object-fit: cover;
-  object-position: 50% 45%;
-  filter: grayscale(1) contrast(1.3) brightness(0.46);
+  object-position: 50% 20%;
+  filter: grayscale(1) contrast(0.85) brightness(1.15);
 }
 
 .tech-stack-signoff {

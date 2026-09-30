@@ -2,6 +2,8 @@
 
 This repository contains the source code for my portfolio website. It is built with [Nuxt](https://nuxt.com/) and hosted on Netlify.
 
+Photo credits, original image links, download URLs, and licensing details are recorded in [IMAGE_SOURCES.md](IMAGE_SOURCES.md).
+
 ## Setup
 
 Install the project dependencies:
